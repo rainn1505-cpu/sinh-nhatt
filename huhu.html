@@ -1,58 +1,47 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chúc mừng sinh nhật</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chúc mừng sinh nhật Thanh Ngân</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: #ffdde1;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      overflow: hidden;
-    }
-    h1 {
-      margin-top: 50px;
-      font-size: 40px;
-      color: #d6336c;
-    }
-    img {
-      margin-top: 20px;
-      width: 250px;
-      border-radius: 15px;
-      box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
-    }
-    .heart {
-      position: fixed;
-      color: red;
-      font-size: 20px;
-      animation: fall 5s linear infinite;
-    }
-    @keyframes fall {
-      from {transform: translateY(-10vh);}
-      to {transform: translateY(110vh);}
-    }
+    :root{--bg1:#ff9a9e;--bg2:#fad0c4}
+    *{box-sizing:border-box}
+    body{margin:0;height:100vh;background:linear-gradient(135deg,var(--bg1),var(--bg2));font-family:Inter,Segoe UI,Arial;text-align:center;color:#fff;overflow:hidden}
+    .wrap{position:relative;top:50%;transform:translateY(-50%);padding:20px}
+    .avatar-wrap{width:160px;height:160px;border-radius:999px;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(255,255,255,0.18),rgba(255,255,255,0.06));box-shadow:0 8px 30px rgba(0,0,0,0.18)}
+    img.avatar{width:146px;height:146px;border-radius:50%;object-fit:cover;border:5px solid rgba(255,255,255,0.9)}
+    h1{margin:6px 0 6px;font-size:34px;text-shadow:0 6px 18px rgba(0,0,0,0.18)}
+    p{margin:0 auto 18px;max-width:640px;font-size:18px;line-height:1.5;color:#fffefc;opacity:0.95}
+    /* hearts floating (mềm mại) */
+    .heart{position:fixed;left:0;top:0;font-size:20px;opacity:0.9;pointer-events:none;animation:rise linear forwards}
+    @keyframes rise{0%{transform:translateY(0) rotate(0deg)}100%{transform:translateY(-120vh) rotate(360deg);opacity:0}}
   </style>
 </head>
 <body>
-  <h1>🎉 Chúc mừng sinh nhật! 🎂</h1>
-  <img src="82032738-4c6a-4c4c-9223-61155d38406d.jpg" alt="Ảnh sinh nhật">
-  <script>
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.classList.add("heart");
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 20 + 15 + "px";
-      document.body.appendChild(heart);
+  <div class="wrap">
+    <div class="avatar-wrap">
+      <!-- nếu ảnh trong repo root thì giữ tên file giống hệt -->
+      <img class="avatar" src="82032738-4c6a-4c4c-9223-61155d38406d.jpg" alt="Thanh Ngân">
+    </div>
 
-      setTimeout(() => {
-        heart.remove();
-      }, 5000);
+    <h1>🎉 Chúc mừng sinh nhật Thanh Ngân 🎂</h1>
+    <p>Chúc bạn có một ngày thật nhiều niềm vui, bánh kem ngọt ngào và những điều đáng yêu nhất. 💖</p>
+  </div>
+
+  <script>
+    const icons = ["💖","💕","🌸","🌷","🌹"];
+    function spawn(){
+      const el = document.createElement('div');
+      el.className = 'heart';
+      el.style.left = Math.random()*100 + 'vw';
+      el.style.fontSize = (14 + Math.random()*28) + 'px';
+      el.style.animationDuration = (4 + Math.random()*4) + 's';
+      el.innerText = icons[Math.floor(Math.random()*icons.length)];
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(), 9000);
     }
-    setInterval(createHeart, 300);
+    setInterval(spawn, 300);
   </script>
 </body>
 </html>
